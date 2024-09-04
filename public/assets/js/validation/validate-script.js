@@ -203,4 +203,202 @@ jQuery(function() {
         }        
     });
 
+    
+
+    // create_court_category create form 
+    $("#create_court_category").validate({
+        rules: {
+            name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            }
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Name is required",
+            }
+        }        
+    });
+    // create_court_category create form 
+    $("#update_court_category").validate({
+        rules: {
+            name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            }
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Name is required",
+            }
+        }        
+    });
+    
+    // create_case_category create form 
+    $("#create_case_category").validate({
+        rules: {
+            name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            }
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Name is required",
+            }
+        }        
+    });
+    // update_case_category create form 
+    $("#update_case_category").validate({
+        rules: {
+            name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            }
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Name is required",
+            }
+        }        
+    });
+    
+    // create_case_stage create form 
+    $("#create_case_stage").validate({
+        rules: {
+            name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            }
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Name is required",
+            }
+        }        
+    });
+    // update_case_stage create form 
+    $("#update_case_stage").validate({
+        rules: {
+            name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            }
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Name is required",
+            }
+        }        
+    });
+    
+    // create_court create form 
+    $("#create_court").validate({
+        rules: {
+            court_name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            court_category_id: {
+                required: true
+            },
+            location: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            }
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Court name is required",
+            }
+        }        
+    });
+    // update_court create form 
+    $("#update_court").validate({
+        rules: {
+            name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            court_category_id: {
+                required: true
+            },
+            location: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            }
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Court name is required",
+            }
+        }        
+    });
+
 });

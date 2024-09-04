@@ -50,6 +50,7 @@ class CaseStageController extends Controller
             $message = 'Case Stage added successfully.';
             return ApiResponse::ok(
                 $message,
+                $case_stage
             );
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -117,6 +118,7 @@ class CaseStageController extends Controller
             $message = 'Case Stage updated successfully.';
             return ApiResponse::ok(
                 $message,
+                $case_stage
             );
         } catch (\Throwable $th) {
             DB::rollBack();
