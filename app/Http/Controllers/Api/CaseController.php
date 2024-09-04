@@ -43,10 +43,10 @@ class CaseController extends Controller
         $court_category =CourtCategory::latest()->get();
         $user = User::latest()->get();
         $data = array(
-            $case_category,
-            $case_stage,
-            $court_category,
-            $user,
+            "case_category" => $case_category,
+            "case_stage" => $case_stage,
+            "court_category" => $court_category,
+            "user" => $user,
         );
         // return response()->json($user, 201);
         $message = 'Get Data Successfully';
@@ -139,11 +139,11 @@ class CaseController extends Controller
             $user = User::latest()->get();
             $cases = Cases::where("id",$request->id)->first();
             $data = array(
-                $case_category,
-                $case_stage,
-                $court_category,
-                $user,
-                $cases,
+                "case_category" => $case_category,
+                "case_stage" => $case_stage,
+                "court_category" => $court_category,
+                "user" => $user,
+                "cases" => $cases,
             );
             // return response()->json($user, 201);
             $message = 'Get Data Successfully';

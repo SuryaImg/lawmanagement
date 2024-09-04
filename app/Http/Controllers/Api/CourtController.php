@@ -142,8 +142,10 @@ class CourtController extends Controller
         try {
             $court = Court::find($request->id);
             $court->delete();
-            toastr()->addSuccess('Court deleted successfully.');
-            return redirect()->route('court.index');
+            $message = 'Court deleted successfully.';
+            return ApiResponse::ok(
+                $message
+            );
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
             return ApiResponse::error($e->getMessage());

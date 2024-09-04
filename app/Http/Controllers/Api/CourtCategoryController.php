@@ -33,13 +33,11 @@ class CourtCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());   
 
         DB::beginTransaction();
 
         try {
-            $data = $request->except(['_token']);
-            $court_category =CourtCategory::create($data);    
+            $court_category =CourtCategory::create($request->all());    
             DB::commit();
 
             $message = 'Court Category added.';
@@ -97,9 +95,8 @@ class CourtCategoryController extends Controller
         try {
             // dd($court_category);
             // Update the fields
-            $data = $request->except(['_token']);
             $court_category = CourtCategory::find($request->id);
-            $court_category->update($data);
+            $court_category->update($request->all());
     
             DB::commit();
             $message = 'Court Category  updated successfully.';
