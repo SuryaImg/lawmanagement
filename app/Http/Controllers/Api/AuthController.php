@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Spatie\Permission\Models\Role;
 use App\Api\ApiResponse;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,6 +22,9 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|confirmed|min:8',
+            'phone' => 'required',
+            'designation' => 'required',
+            'added_by' => 'required',
         ]);
   
         if($validator->fails()){
@@ -31,8 +35,13 @@ class AuthController extends Controller
             $user = new User;
             $user->name = request()->name;
             $user->email = request()->email;
+            $user->phone = request()->phone;
+            $user->role_id = 2;
+            $user->added_by = auth()->user->id;
+            $user->designation = request()->designation;
             $user->password = bcrypt(request()->password);
             $user->save();
+            $user->assignRole(2);
       
             // return response()->json($user, 201);
             $message = 'Get Data Successfully';

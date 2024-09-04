@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Api\ApiResponse;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\CaseStage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
-use Throwable;
-
+use Throwable;  
 
 class CaseStageController extends Controller
 {
@@ -19,15 +20,11 @@ class CaseStageController extends Controller
     public function index()
     {
         $case_stage =CaseStage::latest()->get();
-        return view('case_stage.index', compact('case_stage'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('case_stage.create');
+        $message = 'Case Stage List.';
+        return ApiResponse::ok(
+            $message,
+            $case_stage
+        );
     }
 
     /**
@@ -50,53 +47,56 @@ class CaseStageController extends Controller
             $data = $request->except(['_token']);
             $case_stage =CaseStage::create($data);    
             DB::commit();
-
-            toastr()->addSuccess('Case Stage added successfully.');
-            return redirect()->route('case_stage.index');
+            $message = 'Case Stage added successfully.';
+            return ApiResponse::ok(
+                $message,
+            );
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::error($th->getMessage());
-            return redirect()->route('case_stage.index')
-            ->with('error', 'Something went wrong');
+            return ApiResponse::error($th->getMessage());
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(CaseStage $case_stage)
+    public function show(Request $request)
     {
         try {
-            $case_stage =CaseStage::where('id', '=', $case_stage->id)->first();
+            $case_stage =CaseStage::where('id', '=', $request->id)->first();
             return view('case_stage.show', compact('brand'));
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
-            return redirect()->route('case_stage.index')
-            ->with('error', 'Something went wrong');
+            return ApiResponse::error($e->getMessage());
         }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CaseStage $case_stage)
+    public function edit(Request $request)
     {
         try {
-            // $case_stage =CaseStage::where('id', '=', $case_stage->id)->first();
-            return view('case_stage.edit', compact('case_stage'));
+            $case_stage =CaseStage::where('id', '=', $request->id)->first();
+            $message = 'Case Stage edit details.';
+            return ApiResponse::ok(
+                $message,
+                $case_stage
+            );
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
-            return redirect()->route('case_stage.index')
-            ->with('error', 'Something went wrong');
+            return ApiResponse::error($e->getMessage());
         }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CaseStage $case_stage)
+    public function update(Request $request)
     {
         $validator = Validator::make(request()->all(), [
+            'id' => 'required',
             'name' => 'required|min:2|max:100'
         ]);
   
@@ -110,48 +110,38 @@ class CaseStageController extends Controller
             // dd($case_stage);
             // Update the fields
             $data = $request->except(['_token']);
+            $case_stage =CaseStage::find($request->id);
             $case_stage->update($data);
     
             DB::commit();
-
-            toastr()->addSuccess('Case Stage updated successfully.');
-            return redirect()->route('case_stage.index');
+            $message = 'Case Stage updated successfully.';
+            return ApiResponse::ok(
+                $message,
+            );
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::error($th->getMessage());
-            return redirect()->route('case_stage.index')
-            ->with('error', 'Something went wrong');
+            return ApiResponse::error($th->getMessage());
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CaseStage $case_stage)
+    public function destroy(Request $request)
     {
         try {
+            $case_stage =CaseStage::find($request->id);
             $case_stage->delete();
-            toastr()->addSuccess('Case Stage deleted successfully.');
-            return redirect()->route('case_stage.index');
+      
+            // return response()->json($user, 201);
+            $message = 'Case Stage deleted successfully.';
+            return ApiResponse::ok(
+                $message,
+            );
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
-            return redirect()->route('case_stage.index')
-            ->with('error', 'Something went wrong');
+            return ApiResponse::error($e->getMessage());
         }
-    }
-    
-    public function brand_status(Request $request){
-        $updateStatus =CaseStage::where('id',$request->id)->first();
-        if ($updateStatus) {
-            if ($request->status == 0) {
-                $status = 1;
-            }else{
-                $status = 0;
-            }
-            $updateStatus->status = $status;
-            $updateStatus->save();
-        }
-        return response()->json($updateStatus);
-       
     }
 }
