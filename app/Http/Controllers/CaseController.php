@@ -72,7 +72,7 @@ class CaseController extends Controller
             $cases =Cases::create($data);    
             DB::commit();
 
-            toastr()->addSuccess('Case Stage added successfully.');
+            toastr()->addSuccess('Case added successfully.');
             return redirect()->route('cases.index');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -118,7 +118,7 @@ class CaseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cases $cases)
+    public function update(Request $request, Cases $case)
     {
         $validator = $request->validate([
             // 'type' => 'required',
@@ -145,14 +145,14 @@ class CaseController extends Controller
         DB::beginTransaction();
 
         try {
-            // dd($cases);
+            // dd($case);
             // Update the fields
             $data = $request->except(['_token']);
-            $cases->update($data);
+            $case->update($data);
     
             DB::commit();
 
-            toastr()->addSuccess('Case Stage updated successfully.');
+            toastr()->addSuccess('Case updated successfully.');
             return redirect()->route('cases.index');
         } catch (\Throwable $th) {
             DB::rollBack();
@@ -165,11 +165,11 @@ class CaseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cases $cases)
+    public function destroy(Cases $case)
     {
         try {
-            $cases->delete();
-            toastr()->addSuccess('Case Stage deleted successfully.');
+            $case->delete();
+            toastr()->addSuccess('Case deleted successfully.');
             return redirect()->route('cases.index');
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
