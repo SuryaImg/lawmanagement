@@ -78,9 +78,9 @@ class CaseController extends Controller
             'acts' => 'required',
             'case_charge' => 'required',
             'receiving_date' => 'required',
-            'filling_date' => 'required',
-            'hearing_date' => 'required',
-            'judgement_date' => 'required',
+            // 'filling_date' => 'required',
+            // 'hearing_date' => 'required',
+            // 'judgement_date' => 'required',
             'description' => 'required'
         ]);
   
@@ -93,7 +93,10 @@ class CaseController extends Controller
 
         try {
             $data = $request->except(['_token']);
-            $cases =Cases::create($data);    
+            $cases =Cases::create($data);  
+            if ($request->hasFile('file')) {
+                $cases->addMedia($request->file)->toMediaCollection('main_docs');
+            }  
             DB::commit();
       
             // return response()->json($user, 201);
@@ -163,6 +166,27 @@ class CaseController extends Controller
      */
     public function update(Request $request)
     {
+        $validator = Validator::make(request()->all(), [
+            'type' => 'required',
+            'p_r_name' => 'required',
+            'p_r_advocate' => 'required',
+            'title' => 'required',
+            'case_category_id' => 'required',
+            'court_category_id' => 'required',
+            'court_id' => 'required',
+            'staff_id' => 'required',
+            'stage_id' => 'required',
+            'opp_lawyer' => 'required',
+            'case_no' => 'required',
+            'case_file_no' => 'required',
+            'acts' => 'required',
+            'case_charge' => 'required',
+            'receiving_date' => 'required',
+            // 'filling_date' => 'required',
+            // 'hearing_date' => 'required',
+            // 'judgement_date' => 'required',
+            'description' => 'required'
+        ]);
 
         DB::beginTransaction();
 
@@ -172,6 +196,10 @@ class CaseController extends Controller
             $data = $request->except(['_token']);
             $cases = Cases::find($request->id);
             $cases->update($data);
+            if ($request->hasFile('file')) {
+                $cases->media()->delete();
+                $cases->addMedia($request->file)->toMediaCollection('main_docs');
+            }
     
             DB::commit();
             $message = 'Get Data Successfully';
