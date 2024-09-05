@@ -89,7 +89,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Court Category</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="court_category_id">
+                                        <select class="form-control" id="court_category_id" name="court_category_id">
                                             <option value="">Select Category</option>
                                             @foreach($court_category as $cat)
                                             <option value="{{$cat->id}}" @if($cat->id == $case->court_category_id) {{'selected'}} @endif>{{$cat->name}}</option>
@@ -101,7 +101,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Court</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="court_id">
+                                        <select class="form-control" id="court_id" name="court_id">
                                             <option value="">Select Court</option>
                                         </select>
                                         @error('court_id') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
@@ -226,8 +226,9 @@
             type: "post",
             success: function(data) {
                 $('#court_id').empty();
+                var selectedAmenties = "{{(isset($case))?$case->court_id:''}}";
                 data.forEach(function(item) {
-                    var html =  '<option value="' + item.id + '">'+ item.court_name + '</option>';
+                    var html =  '<option value="' + item.id + '" ' + (item.id == selectedAmenties ? 'selected' : '') + '>'+ item.court_name + '</option>';
                     $('#court_id').append(html);
                 });
             }
