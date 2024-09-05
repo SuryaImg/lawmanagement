@@ -400,5 +400,132 @@ jQuery(function() {
             }
         }        
     });
+    
+    // create_court create form 
+    $("#create_cases").validate({
+        rules: {
+            p_r_name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            p_r_advocate: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            title: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            case_category_id: {
+                required: true
+            },
+            court_category_id: {
+                required: true
+            },
+            court_id: {
+                required: true
+            },
+            staff_id: {
+                required: true
+            },
+            stage_id: {
+                required: true
+            },
+            case_no: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            case_file_no: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            acts: {
+                required: true
+            },
+            case_charge: {
+                required: true
+            },
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Court name is required",
+            }
+        }        
+    });
+    // update_court create form 
+    $("#update_cases").validate({
+        rules: {
+            p_r_name: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            p_r_advocate: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            title: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            case_category_id: {
+                required: true
+            },
+            court_category_id: {
+                required: true
+            },
+            court_id: {
+                required: true
+            },
+            staff_id: {
+                required: true
+            },
+            stage_id: {
+                required: true
+            },
+            case_no: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            case_file_no: {
+                minlength: 2,
+                maxlength: 100,
+                required: true
+            },
+            acts: {
+                required: true
+            },
+            case_charge: {
+                required: true
+            },
+        },
+        errorClass: "help-block error",
+        highlight: function(e) {
+            $(e).closest(".form-group.row").addClass("has-error")
+        },
+        unhighlight: function(e) {
+            $(e).closest(".form-group.row").removeClass("has-error")
+        },
+        messages: {
+            name: {
+                required: "Court name is required",
+            }
+        }        
+    });
 
 });
