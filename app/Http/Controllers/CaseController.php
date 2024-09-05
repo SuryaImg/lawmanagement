@@ -13,6 +13,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Throwable;
 
 class CaseController extends Controller
@@ -24,7 +25,7 @@ class CaseController extends Controller
     {
         $cases =Cases::with('case_category','court_category','court','staff')->latest()->get();
         return view('cases.index', compact('cases'));
-    }
+    } 
 
     /**
      * Show the form for creating a new resource.
@@ -69,7 +70,10 @@ class CaseController extends Controller
 
         try {
             $data = $request->except(['_token']);
-            $cases =Cases::create($data);    
+            $cases =Cases::create($data);  
+            if ($request->hasFile('file')) {
+                $cases->addMedia($request->file)->toMediaCollection('main_docs');
+            }
             DB::commit();
 
             toastr()->addSuccess('Case added successfully.');
@@ -149,6 +153,10 @@ class CaseController extends Controller
             // Update the fields
             $data = $request->except(['_token']);
             $case->update($data);
+            if ($request->hasFile('file')) {
+                $case->media()->delete();
+                $case->addMedia($request->file)->toMediaCollection('main_docs');
+            }
     
             DB::commit();
 

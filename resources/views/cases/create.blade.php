@@ -174,6 +174,13 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">File</label>
+                                        <input type="file" name="file" id="file">
+                                        @error('file') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Description</label>
                                         <textarea name="description" class="form-control" ></textarea>
                                         @error('description') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
