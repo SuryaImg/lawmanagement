@@ -21,6 +21,7 @@
                 <div class="card">
                     <form role="form" method="POST" action="{{ route('cases.store') }}" enctype="multipart/form-data"  id="create_cases">
                         @csrf
+                        <input type="hidden" name="type" value="respondent">
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
                                 <p class="mb-0">Create </p>
@@ -79,20 +80,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Case Acts</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="acts">
-                                            <option value="">Select Act</option>
-                                            <option value="IPC-367">IPC-367</option>
-                                            <option value="IPC-362">IPC-362</option>
-                                            <option value="IPC-361">IPC-361</option>
-                                        </select>
+                                        <label for="example-text-input" class="form-control-label">Case Acts</label>
+                                        <input class="form-control" type="text" name="acts" value="{{ old('acts') }}">
                                         @error('acts') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Court Category</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="court_category_id">
+                                        <select class="form-control" id="court_category_id" name="court_category_id">
                                             <option value="">Select Category</option>
                                             @foreach($court_category as $cat)
                                             <option value="{{$cat->id}}">{{$cat->name}}</option>
@@ -104,7 +100,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="exampleFormControlSelect1">Court</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="court_id">
+                                        <select class="form-control" id="court_id" name="court_id">
                                             <option value="">Select Court</option>
                                         </select>
                                         @error('court_id') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
@@ -192,3 +188,28 @@
         @include('layouts.footers.auth.footer')
     </div>
 @endsection
+
+@push('js')
+<script>
+    $('#court_category_id').change(function(){
+        var id = $('#court_category_id').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            data: {
+                id:id
+            },
+            url: "{{route('courtlist')}}",
+            type: "post",
+            success: function(data) {
+                $('#court_id').empty();
+                data.forEach(function(item) {
+                    var html =  '<option value="' + item.id + '">'+ item.court_name + '</option>';
+                    $('#court_id').append(html);
+                });
+            }
+        });
+    });
+</script>
+@endpush

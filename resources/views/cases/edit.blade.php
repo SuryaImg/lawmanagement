@@ -22,6 +22,7 @@
                     <form role="form" method="POST" action="{{ route('cases.update', $case->id) }}" enctype="multipart/form-data"  id="update_cases">
                         @csrf
                         @method('patch')
+                        <input type="hidden" name="type" value="{{ $case->type }}">
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">
                                 <p class="mb-0">Edit Case Stage</p>
@@ -80,13 +81,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Case Acts</label>
-                                        <select class="form-control" id="exampleFormControlSelect1" name="acts">
-                                            <option value="">Select Act</option>
-                                            <option value="IPC-367">IPC-367</option>
-                                            <option value="IPC-362">IPC-362</option>
-                                            <option value="IPC-361">IPC-361</option>
-                                        </select>
+                                        <label for="example-text-input" class="form-control-label">Case Acts</label>
+                                        <input class="form-control" type="text" name="acts" value="{{ $case->acts }}">
                                         @error('acts') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
@@ -193,3 +189,49 @@
         @include('layouts.footers.auth.footer')
     </div>
 @endsection
+@push('js')
+<script>
+    $('#court_category_id').change(function(){
+        var id = $('#court_category_id').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            data: {
+                id:id
+            },
+            url: "{{route('courtlist')}}",
+            type: "post",
+            success: function(data) {
+                $('#court_id').empty();
+                data.forEach(function(item) {
+                    var html =  '<option value="' + item.id + '">'+ item.court_name + '</option>';
+                    $('#court_id').append(html);
+                });
+            }
+        });
+    });
+
+
+    $(document).ready(function(){
+        var id = $('#court_category_id').val();
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            data: {
+                id:id
+            },
+            url: "{{route('courtlist')}}",
+            type: "post",
+            success: function(data) {
+                $('#court_id').empty();
+                data.forEach(function(item) {
+                    var html =  '<option value="' + item.id + '">'+ item.court_name + '</option>';
+                    $('#court_id').append(html);
+                });
+            }
+        });
+    });
+</script>
+@endpush

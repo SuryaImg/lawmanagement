@@ -8,6 +8,7 @@ use App\Models\Cases;
 use App\Models\CaseCategory;
 use App\Models\CaseStage;
 use App\Models\CourtCategory;
+use App\Models\Court;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -44,7 +45,7 @@ class CaseController extends Controller
     {
         // dd($request->all());  
         $validator = Validator::make(request()->all(), [
-            'type' => 'required',
+            // 'type' => 'required',
             'p_r_name' => 'required',
             'p_r_advocate' => 'required',
             'title' => 'required',
@@ -121,7 +122,7 @@ class CaseController extends Controller
     public function update(Request $request, Cases $cases)
     {
         $validator = Validator::make(request()->all(), [
-            'type' => 'required',
+            // 'type' => 'required',
             'p_r_name' => 'required',
             'p_r_advocate' => 'required',
             'title' => 'required',
@@ -178,18 +179,8 @@ class CaseController extends Controller
         }
     }
     
-    public function brand_status(Request $request){
-        $updateStatus =Cases::where('id',$request->id)->first();
-        if ($updateStatus) {
-            if ($request->status == 0) {
-                $status = 1;
-            }else{
-                $status = 0;
-            }
-            $updateStatus->status = $status;
-            $updateStatus->save();
-        }
+    public function courtlist(Request $request){
+        $updateStatus =Court::where('court_category_id',$request->id)->get();
         return response()->json($updateStatus);
-       
     }
 }

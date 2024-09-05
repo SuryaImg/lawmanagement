@@ -8,6 +8,7 @@ use App\Models\CourtCategory;
 use App\Models\Court;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Throwable;
 
 class CourtController extends Controller
@@ -35,6 +36,11 @@ class CourtController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make(request()->all(), [
+            'court_category_id' => 'required',
+            'location' => 'required',
+            'court_name' => 'required',
+        ]);
         // dd($request->all());   
 
         DB::beginTransaction();
@@ -90,6 +96,11 @@ class CourtController extends Controller
      */
     public function update(Request $request, Court $court)
     {
+        $validator = Validator::make(request()->all(), [
+            'court_category_id' => 'required',
+            'location' => 'required',
+            'court_name' => 'required',
+        ]);
 
         DB::beginTransaction();
 

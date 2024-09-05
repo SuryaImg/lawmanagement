@@ -99,10 +99,6 @@ class CaseStageController extends Controller
         $validator = Validator::make(request()->all(), [
             'name' => 'required|min:2|max:100'
         ]);
-  
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-        }
 
         DB::beginTransaction();
 

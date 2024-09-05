@@ -31,6 +31,7 @@ Route::middleware(['auth','verify_admin','revalidate'])->group(function () {
     Route::resource('case_category', CaseCategoryController::class);
     Route::resource('case_stage', CaseStageController::class);
     Route::resource('cases', CaseController::class);
+    Route::post('cases/courtlist', [CaseController::class, 'courtlist'])->name('courtlist');
 });
 
 require __DIR__.'/auth.php';

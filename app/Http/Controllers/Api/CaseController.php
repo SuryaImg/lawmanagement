@@ -9,6 +9,7 @@ use App\Models\Cases;
 use App\Models\CaseCategory;
 use App\Models\CaseStage;
 use App\Models\CourtCategory;
+use App\Models\Court;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -202,6 +203,17 @@ class CaseController extends Controller
             Log::error($e->getMessage());
             return ApiResponse::error($e->getMessage());
         }
+    }
+
+    
+    
+    public function courtlist(Request $request){
+        $Courts =Court::where('court_category_id',$request->id)->get();
+        $message = 'Case Court list';
+        return ApiResponse::ok(
+            $message,
+            $Courts
+        );
     }
 }
 
