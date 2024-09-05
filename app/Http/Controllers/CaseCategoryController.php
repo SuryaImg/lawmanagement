@@ -34,7 +34,7 @@ class CaseCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             'name' => 'required|min:2|max:100'
         ]);
         // dd($request->all());   
@@ -91,7 +91,7 @@ class CaseCategoryController extends Controller
      */
     public function update(Request $request, CaseCategory $case_category)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             'name' => 'required|min:2|max:100'
         ]);
 

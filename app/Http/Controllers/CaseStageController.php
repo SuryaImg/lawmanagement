@@ -35,13 +35,9 @@ class CaseStageController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             'name' => 'required|min:2|max:100'
         ]);
-  
-        if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
-        }
         // dd($request->all());   
 
         DB::beginTransaction();
@@ -96,7 +92,7 @@ class CaseStageController extends Controller
      */
     public function update(Request $request, CaseStage $case_stage)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             'name' => 'required|min:2|max:100'
         ]);
 

@@ -44,7 +44,7 @@ class CaseController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());  
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             // 'type' => 'required',
             'p_r_name' => 'required',
             'p_r_advocate' => 'required',
@@ -60,12 +60,11 @@ class CaseController extends Controller
             'acts' => 'required',
             'case_charge' => 'required',
             'receiving_date' => 'required',
-            'filling_date' => 'required',
-            'hearing_date' => 'required',
-            'judgement_date' => 'required',
+            // 'filling_date' => 'required',
+            // 'hearing_date' => 'required',
+            // 'judgement_date' => 'required',
             'description' => 'required'
         ]); 
-
         DB::beginTransaction();
 
         try {
@@ -121,7 +120,7 @@ class CaseController extends Controller
      */
     public function update(Request $request, Cases $cases)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             // 'type' => 'required',
             'p_r_name' => 'required',
             'p_r_advocate' => 'required',
@@ -137,9 +136,9 @@ class CaseController extends Controller
             'acts' => 'required',
             'case_charge' => 'required',
             'receiving_date' => 'required',
-            'filling_date' => 'required',
-            'hearing_date' => 'required',
-            'judgement_date' => 'required',
+            // 'filling_date' => 'required',
+            // 'hearing_date' => 'required',
+            // 'judgement_date' => 'required',
             'description' => 'required'
         ]); 
 

@@ -34,7 +34,7 @@ class CourtCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             'name' => 'required|min:2|max:100'
         ]);
         // dd($request->all());   
@@ -95,7 +95,7 @@ class CourtCategoryController extends Controller
         DB::beginTransaction();
 
         try {
-            $validator = Validator::make(request()->all(), [
+            $validator = $request->validate([
                 'name' => 'required|min:2|max:100'
             ]);
             // dd($court_category);

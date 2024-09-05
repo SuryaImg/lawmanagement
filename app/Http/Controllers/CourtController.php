@@ -36,7 +36,7 @@ class CourtController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             'court_category_id' => 'required',
             'location' => 'required',
             'court_name' => 'required',
@@ -96,7 +96,7 @@ class CourtController extends Controller
      */
     public function update(Request $request, Court $court)
     {
-        $validator = Validator::make(request()->all(), [
+        $validator = $request->validate([
             'court_category_id' => 'required',
             'location' => 'required',
             'court_name' => 'required',
