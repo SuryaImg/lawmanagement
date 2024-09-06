@@ -31,6 +31,7 @@ Route::group([
 
     // Route::resource('court', CourtController::class);
     Route::get('court/index', [CourtController::class, 'index']);
+    Route::get('court/create', [CourtController::class, 'create']);
     Route::get('court/edit', [CourtController::class, 'edit']);
     Route::post('court/store', [CourtController::class, 'store']);
     Route::post('court/update', [CourtController::class, 'update']);
@@ -55,8 +56,10 @@ Route::group([
 
     // Route::resource('cases', CaseController::class);
     Route::get('cases/index', [CaseController::class, 'index']);
+    Route::get('cases/create', [CaseController::class, 'create']);
     Route::get('cases/edit', [CaseController::class, 'edit']);
     Route::post('cases/store', [CaseController::class, 'store']);
     Route::post('cases/update', [CaseController::class, 'update']);
+    Route::post('cases/courtlist', [CaseController::class, 'courtlist']);
     Route::post('cases/destroy', [CaseController::class, 'destroy']);
 });

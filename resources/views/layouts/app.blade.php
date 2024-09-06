@@ -69,7 +69,7 @@
     <script src="{{ asset('assets/js/validation/jquery-validate-script.min.js') }}"></script>
     <script src="{{ asset('assets/js/validation/validate-script.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-    @stack('js');
+    @stack('js')
 </body>
 
 </html>

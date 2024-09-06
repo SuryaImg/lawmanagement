@@ -47,14 +47,18 @@ class UserController extends Controller
             'name' => 'required|max:250',
             'email' => 'required|email|max:250|unique:users,email',
             'password' => 'required|max:250|same:confirm_password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'phone' => 'required'
         ]);
 
         DB::beginTransaction();
         try {
         
+            $role = DB::table('roles')->where('name',$request->roles[0])->pluck('id');
             $input = $request->all();
             $input['password'] = Hash::make($input['password']);
+            $input['added_by'] = auth()->user()->id;
+            $input['role_id'] = $role[0];
         
             $user = User::create($input);
             $user->assignRole($request->input('roles'));
@@ -104,11 +108,14 @@ class UserController extends Controller
             'name' => 'required|max:250',
             'email' => 'required|max:250|email|unique:users,email,'.$id,
             'password' => 'same:confirm_password|max:250',
-            'roles' => 'required'
+            'roles' => 'required',
+            'phone' => 'required'
         ]);
         DB::beginTransaction();
-        try {        
+        try {
+            $role = DB::table('roles')->where('name',$request->roles[0])->pluck('id');
             $input = $request->all();
+            $input['role_id'] = $role[0];
             if(!empty($input['password'])){ 
                 $input['password'] = Hash::make($input['password']);
             }else{

@@ -22,7 +22,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Username</label>
+                                        <label for="example-text-input" class="form-control-label">Name</label>
                                         <input class="form-control" type="text" name="name" value="{{ old('name') }}">
                                         @error('name') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
@@ -32,6 +32,20 @@
                                         <label for="example-text-input" class="form-control-label">Email address</label>
                                         <input class="form-control" type="email" name="email" value="{{ old('email') }}">
                                         @error('email') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Phone</label>
+                                        <input class="form-control" type="number" name="phone" value="{{ old('phone') }}">
+                                        @error('phone') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="example-text-input" class="form-control-label">Designation</label>
+                                        <input class="form-control" type="text" name="designation" value="{{ old('designation') }}">
+                                        @error('designation') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
