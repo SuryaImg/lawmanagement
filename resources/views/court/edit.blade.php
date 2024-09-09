@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 <div class="card">
-                    <form role="form" method="POST" action="{{ route('court.update', $court->id) }}" enctype="multipart/form-data"  id="update_court">
+                    <form role="form" method="POST" action="{{ route('courts.update', $court->id) }}" enctype="multipart/form-data"  id="update_court">
                         @csrf
                         @method('patch')
                         <div class="card-header pb-0">

@@ -19,7 +19,7 @@
                     </div>
                 @endif
                 <div class="card">
-                    <form role="form" method="POST" action="{{ route('court.store') }}" enctype="multipart/form-data"  id="create_court">
+                    <form role="form" method="POST" action="{{ route('courts.store') }}" enctype="multipart/form-data"  id="create_court">
                         @csrf
                         <div class="card-header pb-0">
                             <div class="d-flex align-items-center">

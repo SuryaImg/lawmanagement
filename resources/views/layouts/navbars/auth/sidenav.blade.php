@@ -34,11 +34,11 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="ni ni-single-02 text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Users</span>
+                    <span class="nav-link-text ms-1">Staff</span>
                 </a>
             </li>
             @can('role-list')
-            <li class="nav-item">
+            <li class="nav-item d-none">
                 <a class="nav-link {{ request()->is('roles*') ? 'active' : '' }}" href="{{ route('roles.index') }}">
                     <div
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
@@ -49,13 +49,13 @@
             </li>
             @endcan
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#locationsExamples" class="nav-link {{ request()->is('court*') || request()->is('court_category*') ? 'active' : '' }}" aria-controls="locationsExamples" role="button" aria-expanded="{{ request()->is('court_category*') || request()->is('court*') ? 'true' : 'false' }}">
+                <a data-bs-toggle="collapse" href="#locationsExamples" class="nav-link {{ request()->is('courts*') || request()->is('court_category*') ? 'active' : '' }}" aria-controls="locationsExamples" role="button" aria-expanded="{{ request()->is('court_category*') || request()->is('courts*') ? 'true' : 'false' }}">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
-                        <i class="ni ni-pin-3 text-info text-sm opacity-10"></i>
+                        <i class="fa-solid fa-gavel text-info text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Court</span>
                 </a>
-                <div class="collapse {{ request()->is('court*') || request()->is('court_category*') ? 'show' : '' }}" id="locationsExamples">
+                <div class="collapse {{ request()->is('courts*') || request()->is('court_category*') ? 'show' : '' }}" id="locationsExamples">
                     <ul class="nav ms-4">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('court_category*') ? 'active' : '' }}" href="{{ route('court_category.index') }}">
@@ -68,7 +68,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('court*') ? 'active' : '' }}" href="{{ route('court.index') }}">
+                            <a class="nav-link {{ request()->is('courts*') ? 'active' : '' }}" href="{{ route('courts.index') }}">
                                 <!-- <div
                                     class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                                     <i class="ni ni-circle-08 text-primary text-sm opacity-10"></i>
@@ -81,13 +81,13 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a data-bs-toggle="collapse" href="#CaseExamples" class="nav-link {{ request()->is('case_stage*') || request()->is('case_category*') ? 'active' : '' }}" aria-controls="CaseExamples" role="button" aria-expanded="{{ request()->is('case_category*') || request()->is('case_stage*') ? 'true' : 'false' }}">
+                <a data-bs-toggle="collapse" href="#CaseExamples" class="nav-link {{ request()->is('case_stage*') || request()->is('case_category*') || request()->is('cases*') ? 'active' : '' }}" aria-controls="CaseExamples" role="button" aria-expanded="{{ request()->is('case_category*') || request()->is('case_stage*') || request()->is('cases*')  ? 'true' : 'false' }}">
                     <div class="icon icon-shape icon-sm text-center d-flex align-items-center justify-content-center">
-                        <i class="ni ni-pin-3 text-info text-sm opacity-10"></i>
+                        <i class="fa-solid fa-layer-group text-info text-sm opacity-10"></i>
                     </div>
                     <span class="nav-link-text ms-1">Case</span>
                 </a>
-                <div class="collapse {{ request()->is('case_stage*') || request()->is('case_category*') ? 'show' : '' }}" id="CaseExamples">
+                <div class="collapse {{ request()->is('case_stage*') || request()->is('case_category*') || request()->is('cases*')  ? 'show' : '' }}" id="CaseExamples">
                     <ul class="nav ms-4">
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('case_category*') ? 'active' : '' }}" href="{{ route('case_category.index') }}">
@@ -143,7 +143,7 @@
                 </div>
             </div>
         </div>
-        <a href="/dashboard" target="_blank"
+        <a href="https://www.imgglobalinfotech.com/" target="_blank"
             class="btn btn-dark btn-sm w-100 mb-3">Check</a>
     </div>
 </aside>

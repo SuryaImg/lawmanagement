@@ -51,11 +51,11 @@ class CourtController extends Controller
             DB::commit();
 
             toastr()->addSuccess('Court added successfully.');
-            return redirect()->route('court.index');
+            return redirect()->route('courts.index');
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::error($th->getMessage());
-            return redirect()->route('court.index')
+            return redirect()->route('courts.index')
             ->with('error', 'Something went wrong');
         }
     }
@@ -67,10 +67,10 @@ class CourtController extends Controller
     {
         try {
             $court =Court::where('id', '=', $court->id)->first();
-            return view('court.show', compact('brand'));
+            return view('court.show', compact('court'));
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
-            return redirect()->route('court.index')
+            return redirect()->route('courts.index')
             ->with('error', 'Something went wrong');
         }
     }
@@ -86,7 +86,7 @@ class CourtController extends Controller
             return view('court.edit', compact('court','court_category'));
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
-            return redirect()->route('court.index')
+            return redirect()->route('courts.index')
             ->with('error', 'Something went wrong');
         }
     }
@@ -113,11 +113,11 @@ class CourtController extends Controller
             DB::commit();
 
             toastr()->addSuccess('Court updated successfully.');
-            return redirect()->route('court.index');
+            return redirect()->route('courts.index');
         } catch (\Throwable $th) {
             DB::rollBack();
             Log::error($th->getMessage());
-            return redirect()->route('court.index')
+            return redirect()->route('courts.index')
             ->with('error', 'Something went wrong');
         }
     }
@@ -130,10 +130,10 @@ class CourtController extends Controller
         try {
             $court->delete();
             toastr()->addSuccess('Court deleted successfully.');
-            return redirect()->route('court.index');
+            return redirect()->route('courts.index');
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
-            return redirect()->route('court.index')
+            return redirect()->route('courts.index')
             ->with('error', 'Something went wrong');
         }
     }

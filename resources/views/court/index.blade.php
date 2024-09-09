@@ -12,7 +12,7 @@
                     <div class="d-flex flex-row justify-content-between"><div>
                         <h5 class="mb-0">All Court </h5>
                     </div>
-                    <a href="{{ route('court.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Court</a>
+                    <a href="{{ route('courts.create') }}" class="btn bg-gradient-primary btn-sm mb-0" type="button">+&nbsp; New Court</a>
                 </div>
                 </div>
                 <div class="card-body px-0 pt-0 pb-2">
@@ -47,16 +47,16 @@
                                         </div>
                                     </td>
                                     <td class="text-center">
-                                        <!-- <a href="{{ route('court.show',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Show events">
+                                        <!-- <a href="{{ route('courts.show',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Show events">
                                             <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
                                         </a> -->
-                                        <a href="{{ route('court.edit',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Edit event">
+                                        <a href="{{ route('courts.edit',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Edit event">
                                             <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
                                         </a>
                                         <span>
                                             <i class="cursor-pointer fas fa-trash text-secondary" aria-hidden="true" onclick="argon.showSwal('warning-message-and-cancel','delete_form_{{$data->id}}')" ></i>
                                         </span>
-                                        <form action="{{ route('court.destroy', $data->id) }}" method="POST" id="delete_form_{{$data->id}}">
+                                        <form action="{{ route('courts.destroy', $data->id) }}" method="POST" id="delete_form_{{$data->id}}">
                                             @csrf
                                             @method('DELETE')
                                         </form>
