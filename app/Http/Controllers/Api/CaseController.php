@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Throwable;
 use App\Api\ApiResponse;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class CaseController extends Controller
 {
@@ -24,7 +26,7 @@ class CaseController extends Controller
      */
     public function index()
     {
-        $cases =Cases::with('case_category','court_category','court','staff')->latest()->get();
+        $cases =Cases::with('case_category','court_category','court','staff','media')->latest()->get();
       
         // return response()->json($user, 201);
         $message = 'Get Data Successfully';
@@ -141,7 +143,7 @@ class CaseController extends Controller
             $case_stage =CaseStage::latest()->get();
             $court_category =CourtCategory::latest()->get();
             $user = User::latest()->get();
-            $cases = Cases::where("id",$request->id)->first();
+            $cases = Cases::wit('case_category','court_category','court','staff','media')->where("id",$request->id)->first();
             $data = array(
                 "case_category" => $case_category,
                 "case_stage" => $case_stage,
@@ -242,6 +244,38 @@ class CaseController extends Controller
             $message,
             $Courts
         );
+    }
+
+    public function replaceImage(Request $request){
+        try {
+            $ids = $request->media_id;
+            $fileName = pathinfo($request->file->getClientOriginalName(), PATHINFO_FILENAME);
+            $extension = $request->file->getClientOriginalExtension();
+            $mimetype = $request->file->getClientMimeType();
+            if($ids != null){
+                $media = Media::where('id', $ids)->first();
+                if ($media) {
+                    Storage::disk($media->disk)->delete($media->id.'/'.$media->file_name);
+                    if ($request->hasFile('file')) {
+                        // foreach ($request->file('file') as $file) {
+                            $path = $request->file->storeAs($media->id, $fileName.".".$extension, $media->disk);
+                            $media->file_name = basename($path);
+                        // }
+                    }
+                    $media->file_name = $fileName.".".$extension;
+                    $media->mime_type = $mimetype;
+                    $media->save();
+                }
+            }
+            $message = 'Media updated successfully.';
+            return ApiResponse::ok(
+                $message,
+                $media
+            );
+        } catch (\Throwable $th) {
+            Log::error($th->getMessage());
+            return ApiResponse::error($th->getMessage());
+        }
     }
 }
 

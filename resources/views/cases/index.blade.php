@@ -39,10 +39,10 @@
                                         <p class="text-sm font-weight-bold mb-0"> {{ $data->description }}</p>
                                     </td>
                                     <td class="text-center">
-                                        <!-- <a href="{{ route('cases.show',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Show events">
+                                        <a href="{{ route('cases.show',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Edit Images">
                                             <i class="fas fa-eye text-secondary" aria-hidden="true"></i>
-                                        </a> -->
-                                        <a href="{{ route('cases.edit',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Edit event">
+                                        </a>
+                                        <a href="{{ route('cases.edit',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Edit cases">
                                             <i class="fas fa-user-edit text-secondary" aria-hidden="true"></i>
                                         </a>
                                         <span>

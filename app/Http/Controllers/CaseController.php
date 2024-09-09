@@ -70,9 +70,11 @@ class CaseController extends Controller
 
         try {
             $data = $request->except(['_token']);
-            $cases =Cases::create($data);  
+            $cases =Cases::create($data);
             if ($request->hasFile('file')) {
-                $cases->addMedia($request->file)->toMediaCollection('main_docs');
+                foreach ($request->file as $pic) {
+                    $cases->addMedia($pic)->toMediaCollection('main_docs');
+                }
             }
             DB::commit();
 
@@ -89,11 +91,11 @@ class CaseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Cases $cases)
+    public function show(Cases $case)
     {
         try {
-            $cases =Cases::where('id', '=', $cases->id)->first();
-            return view('cases.show', compact('brand'));
+            $cases =Cases::with('media')->where('id', '=', $case->id)->first();
+            return view('cases.show', compact('cases'));
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
             return redirect()->route('cases.index')
@@ -154,8 +156,9 @@ class CaseController extends Controller
             $data = $request->except(['_token']);
             $case->update($data);
             if ($request->hasFile('file')) {
-                $case->media()->delete();
-                $case->addMedia($request->file)->toMediaCollection('main_docs');
+                foreach ($request->file as $data) {
+                    $case->addMedia($data)->toMediaCollection('main_docs');
+                }
             }
     
             DB::commit();

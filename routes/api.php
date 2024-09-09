@@ -61,5 +61,6 @@ Route::group([
     Route::post('cases/store', [CaseController::class, 'store']);
     Route::post('cases/update', [CaseController::class, 'update']);
     Route::post('cases/courtlist', [CaseController::class, 'courtlist']);
+    Route::post('cases/replace-image', [CaseController::class, 'replaceImage']);
     Route::post('cases/destroy', [CaseController::class, 'destroy']);
 });

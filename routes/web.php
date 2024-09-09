@@ -32,6 +32,7 @@ Route::middleware(['auth','verify_admin','revalidate'])->group(function () {
     Route::resource('case_stage', CaseStageController::class);
     Route::resource('cases', CaseController::class);
     Route::post('cases/courtlist', [CaseController::class, 'courtlist'])->name('courtlist');
+    Route::post('cases/replaceImage', [CaseController::class, 'replaceImage'])->name('replaceImage');
 });
 
 require __DIR__.'/auth.php';
