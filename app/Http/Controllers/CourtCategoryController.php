@@ -91,13 +91,13 @@ class CourtCategoryController extends Controller
      */
     public function update(Request $request, CourtCategory $court_category)
     {
+        $validator = $request->validate([
+            'name' => 'required|min:2|max:100'
+        ]);
 
         DB::beginTransaction();
 
         try {
-            $validator = $request->validate([
-                'name' => 'required|min:2|max:100'
-            ]);
             // dd($court_category);
             // Update the fields
             $data = $request->except(['_token']);
@@ -129,20 +129,5 @@ class CourtCategoryController extends Controller
             return redirect()->route('court_category.index')
             ->with('error', 'Something went wrong');
         }
-    }
-    
-    public function brand_status(Request $request){
-        $updateStatus =CourtCategory::where('id',$request->id)->first();
-        if ($updateStatus) {
-            if ($request->status == 0) {
-                $status = 1;
-            }else{
-                $status = 0;
-            }
-            $updateStatus->status = $status;
-            $updateStatus->save();
-        }
-        return response()->json($updateStatus);
-       
     }
 }

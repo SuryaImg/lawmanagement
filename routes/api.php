@@ -36,6 +36,7 @@ Route::group([
     Route::post('court/store', [CourtController::class, 'store']);
     Route::post('court/update', [CourtController::class, 'update']);
     Route::post('court/destroy', [CourtController::class, 'destroy']);
+    Route::post('court/city', [CourtController::class, 'projectcity']);
 
 
     // Route::resource('case-category', CaseCategoryController::class);

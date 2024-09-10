@@ -28,6 +28,7 @@ Route::middleware(['auth','verify_admin','revalidate'])->group(function () {
     Route::resource('users', UserController::class);
     Route::resource('court_category', CourtCategoryController::class);
     Route::resource('courts', CourtController::class);
+    Route::post('courts/city', [CourtController::class, 'projectcity'])->name('projectcity');
     Route::resource('case_category', CaseCategoryController::class);
     Route::resource('case_stage', CaseStageController::class);
     Route::resource('cases', CaseController::class);

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\CourtCategory;
 use App\Models\Court;
+use App\Models\ProjectState;
+use App\Models\ProjectCity;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -20,7 +22,7 @@ class CourtController extends Controller
      */
     public function index()
     {
-        $court =Court::latest()->get();
+        $court =Court::with('city_id','state_id','court_category')->latest()->get();
 
         $message = 'Case Category updated successfully.';
         return ApiResponse::ok(
@@ -35,11 +37,15 @@ class CourtController extends Controller
     public function create()
     {
         $court_category =CourtCategory::latest()->get();
-
+        $Projectstate =ProjectState::latest()->get();
+        $data = array(
+            $court_category,
+            $Projectstate
+        );
         $message = 'Case Category list.';
         return ApiResponse::ok(
             $message,
-            $court_category
+            $data
         );
     }
 
@@ -48,6 +54,17 @@ class CourtController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make(request()->all(), [
+            'court_category_id' => 'required',
+            'location' => 'required',
+            'court_name' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
+        ]);
+  
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
         // dd($request->all());   
 
         DB::beginTransaction();
@@ -89,11 +106,13 @@ class CourtController extends Controller
     public function edit(Request $request)
     {
         try {
-            $court =Court::where('id', '=', $request->id)->first();
+            $court =Court::with('city_id','state_id','court_category')->where('id', '=', $request->id)->first();
             $court_category =CourtCategory::latest()->get();
+            $Projectstate =ProjectState::latest()->get();
             $data = array(
-                $court,
-                $court_category
+                'court' => $court,
+                'court_category' => $court_category,
+                'projectstate' => $Projectstate
             );
             $message = 'Court edit.';
             return ApiResponse::ok(
@@ -111,6 +130,18 @@ class CourtController extends Controller
      */
     public function update(Request $request)
     {
+        $validator = Validator::make(request()->all(), [
+            'id' => 'required',
+            'court_category_id' => 'required',
+            'location' => 'required',
+            'court_name' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
+        ]);
+  
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
 
         DB::beginTransaction();
 
@@ -145,6 +176,24 @@ class CourtController extends Controller
             $message = 'Court deleted successfully.';
             return ApiResponse::ok(
                 $message
+            );
+        } catch (\Throwable $e) {
+            Log::error($e->getMessage());
+            return ApiResponse::error($e->getMessage());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function projectcity(Request $request)
+    {
+        try {
+            $city = ProjectCity::where('state_id',$request->state_id)->get();
+            $message = 'Court city data.';
+            return ApiResponse::ok(
+                $message,
+                $city
             );
         } catch (\Throwable $e) {
             Log::error($e->getMessage());

@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use App\Models\CourtCategory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Validator;
 use Throwable;
 
 class CourtCategoryController extends Controller
@@ -33,6 +34,13 @@ class CourtCategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make(request()->all(), [
+            'name' => 'required|min:2|max:100'
+        ]);
+  
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
 
         DB::beginTransaction();
 
@@ -89,6 +97,14 @@ class CourtCategoryController extends Controller
      */
     public function update(Request $request)
     {
+        $validator = Validator::make(request()->all(), [
+            'id' => 'required',
+            'name' => 'required|min:2|max:100'
+        ]);
+  
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
 
         DB::beginTransaction();
 

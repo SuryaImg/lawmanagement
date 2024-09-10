@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         try {
-            $data = User::with('media')->latest()->paginate(5);
+            $data = User::with('media')->latest()->get();
             return view('users.index',compact('data'));
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
@@ -48,7 +48,7 @@ class UserController extends Controller
             'email' => 'required|email|max:250|unique:users,email',
             'password' => 'required|max:250|same:confirm_password',
             'roles' => 'required',
-            'phone' => 'required'
+            'phone' => 'required|digits:10'
         ]);
 
         DB::beginTransaction();
@@ -109,7 +109,7 @@ class UserController extends Controller
             'email' => 'required|max:250|email|unique:users,email,'.$id,
             'password' => 'same:confirm_password|max:250',
             'roles' => 'required',
-            'phone' => 'required'
+            'phone' => 'required|digits:10'
         ]);
         DB::beginTransaction();
         try {

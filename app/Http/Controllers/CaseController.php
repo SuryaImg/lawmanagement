@@ -47,24 +47,23 @@ class CaseController extends Controller
         // dd($request->all());  
         $validator = $request->validate([
             // 'type' => 'required',
-            'p_r_name' => 'required',
-            'p_r_advocate' => 'required',
-            'title' => 'required',
+            'p_r_name' => 'required|min:2|max:100',
+            'p_r_advocate' => 'required|min:2|max:100',
+            'title' => 'required|min:2|max:100',
             'case_category_id' => 'required',
             'court_category_id' => 'required',
             'court_id' => 'required',
             'staff_id' => 'required',
             'stage_id' => 'required',
-            'opp_lawyer' => 'required',
-            'case_no' => 'required',
-            'case_file_no' => 'required',
-            'acts' => 'required',
-            'case_charge' => 'required',
+            'opp_lawyer' => 'required|min:2|max:100',
+            'case_no' => 'required|min:2|max:100',
+            'case_file_no' => 'required|min:2|max:100',
+            'acts' => 'required|min:2|max:100',
+            'case_charge' => 'required|digit:6|numeric',
             'receiving_date' => 'required',
             // 'filling_date' => 'required',
             // 'hearing_date' => 'required',
             // 'judgement_date' => 'required',
-            'description' => 'required'
         ]); 
         DB::beginTransaction();
 
@@ -128,24 +127,23 @@ class CaseController extends Controller
     {
         $validator = $request->validate([
             // 'type' => 'required',
-            'p_r_name' => 'required',
-            'p_r_advocate' => 'required',
-            'title' => 'required',
+            'p_r_name' => 'required|min:2|max:100',
+            'p_r_advocate' => 'required|min:2|max:100',
+            'title' => 'required|min:2|max:100',
             'case_category_id' => 'required',
             'court_category_id' => 'required',
             'court_id' => 'required',
             'staff_id' => 'required',
             'stage_id' => 'required',
-            'opp_lawyer' => 'required',
-            'case_no' => 'required',
-            'case_file_no' => 'required',
-            'acts' => 'required',
-            'case_charge' => 'required',
+            'opp_lawyer' => 'required|min:2|max:100',
+            'case_no' => 'required|min:2|max:100',
+            'case_file_no' => 'required|min:2|max:100',
+            'acts' => 'required|min:2|max:100',
+            'case_charge' => 'required|digit:6|numeric',
             'receiving_date' => 'required',
             // 'filling_date' => 'required',
             // 'hearing_date' => 'required',
             // 'judgement_date' => 'required',
-            'description' => 'required'
         ]); 
 
         DB::beginTransaction();

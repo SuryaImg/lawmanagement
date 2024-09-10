@@ -35,12 +35,14 @@
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Name</label>
                                         <input class="form-control" type="text" name="name" value="{{ $user->name }}">
+                                        @error('name') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="example-text-input" class="form-control-label">Email address</label>
                                         <input class="form-control" type="email" name="email" value="{{ $user->email }}">
+                                        @error('email') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">

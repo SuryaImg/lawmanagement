@@ -71,6 +71,11 @@ jQuery(function() {
                 required: true,
                 email: true
             },
+            phone: {
+              required: true,
+              rangelength: [10, 12],
+              number: true
+            },
             password: {
                 required: true,
             },
@@ -79,7 +84,7 @@ jQuery(function() {
                 equalTo: "#password"
             },
             "roles[]": {
-                required: false,
+                required: true,
             }
         },
         errorClass: "help-block error",
@@ -122,8 +127,13 @@ jQuery(function() {
                 required: true,
                 email: true
             },
+            phone: {
+              required: true,
+              rangelength: [10, 12],
+              number: true
+            },
             "roles[]": {
-                required: false,
+                required: true,
             }
         },
         errorClass: "help-block error",
@@ -448,7 +458,8 @@ jQuery(function() {
                 required: true
             },
             case_charge: {
-                required: true
+                required: true,
+                number: true
             },
         },
         errorClass: "help-block error",
@@ -511,7 +522,8 @@ jQuery(function() {
                 required: true
             },
             case_charge: {
-                required: true
+                required: true,
+                number: true
             },
         },
         errorClass: "help-block error",

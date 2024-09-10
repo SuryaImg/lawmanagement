@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use App\Models\CourtCategory;
 use App\Models\Court;
+use App\Models\ProjectState;
+use App\Models\ProjectCity;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +30,8 @@ class CourtController extends Controller
     public function create()
     {
         $court_category =CourtCategory::latest()->get();
-        return view('court.create', compact('court_category'));
+        $Projectstate =ProjectState::latest()->get();
+        return view('court.create', compact('court_category','Projectstate'));
     }
 
     /**
@@ -40,6 +43,8 @@ class CourtController extends Controller
             'court_category_id' => 'required',
             'location' => 'required',
             'court_name' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
         ]);
         // dd($request->all());   
 
@@ -83,7 +88,8 @@ class CourtController extends Controller
         try {
             // $court =Court::where('id', '=', $court->id)->first();
             $court_category =CourtCategory::latest()->get();
-            return view('court.edit', compact('court','court_category'));
+            $Projectstate =ProjectState::latest()->get();
+            return view('court.edit', compact('court','court_category','Projectstate'));
         } catch (\Throwable $e) {
             Log::error($e->getMessage());
             return redirect()->route('courts.index')
@@ -100,6 +106,8 @@ class CourtController extends Controller
             'court_category_id' => 'required',
             'location' => 'required',
             'court_name' => 'required',
+            'state_id' => 'required',
+            'city_id' => 'required',
         ]);
 
         DB::beginTransaction();
@@ -151,5 +159,10 @@ class CourtController extends Controller
         }
         return response()->json($updateStatus);
        
+    }
+
+    public function projectcity(Request $request){
+        $city = ProjectCity::where('state_id',$request->state_id)->get();
+        return response()->json($city);
     }
 }
