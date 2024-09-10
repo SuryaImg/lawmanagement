@@ -34,7 +34,7 @@
                             <input type="hidden" name="country_id" value="{{ $court->country_id ?? '' }}">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">State*</label>
+                                    <label for="exampleFormControlSelect1" class="required">State</label>
                                     <select class="form-control" id="state_id" name="state_id">
                                         <option value="">Select State</option>
                                         @foreach($Projectstate as $state)
@@ -46,7 +46,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">City</label>
+                                    <label for="exampleFormControlSelect1" class="required">City</label>
                                     <select class="form-control" id="city_id" name="city_id">
                                         <option value="">Select City</option>
                                     </select>
@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Court Category</label>
+                                    <label for="exampleFormControlSelect1" class="required">Court Category</label>
                                     <select class="form-control" id="exampleFormControlSelect1" name="court_category_id">
                                         <option value="">Select Category</option>
                                         @foreach($court_category as $cat)
@@ -67,14 +67,14 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Location</label>
+                                    <label for="example-text-input" class="form-control-label required">Location</label>
                                     <input class="form-control" type="text" name="location" value="{{ $court->location ?? '' }}">
                                     @error('location') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="example-text-input" class="form-control-label">Court Name</label>
+                                    <label for="example-text-input" class="form-control-label required">Court Name</label>
                                     <input class="form-control" type="text" name="court_name" value="{{ $court->court_name ?? '' }}">
                                     @error('court_name') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                 </div>

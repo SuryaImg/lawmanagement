@@ -19,3 +19,9 @@ img.navbar-user-img {
     width: 25px;
     border-radius: 50px;
 }
+
+.required:after {
+    color: #cc0000;
+    content: " *";
+    font-weight: bold;
+}

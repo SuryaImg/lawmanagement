@@ -33,21 +33,21 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Name</label>
+                                        <label for="example-text-input" class="form-control-label required">Name</label>
                                         <input class="form-control" type="text" name="name" value="{{ $user->name }}">
                                         @error('name') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Email address</label>
+                                        <label for="example-text-input" class="form-control-label required">Email address</label>
                                         <input class="form-control" type="email" name="email" value="{{ $user->email }}">
                                         @error('email') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Phone</label>
+                                        <label for="example-text-input" class="form-control-label required">Phone</label>
                                         <input class="form-control" type="number" name="phone" value="{{ $user->phone }}">
                                         @error('phone') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
@@ -64,7 +64,7 @@
                                 @endphp
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Role</label>
+                                        <label for="example-text-input" class="form-control-label required">Role</label>
                                         <select class="form-control" name="roles[]">
                                             <option value="">Select Role</option>
                                             @foreach ($roles as $role)

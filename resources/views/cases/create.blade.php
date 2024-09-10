@@ -33,28 +33,28 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Respondent Name</label>
+                                        <label for="example-text-input" class="form-control-label required">Respondent Name</label>
                                         <input class="form-control" type="text" name="p_r_name" value="{{ old('p_r_name') }}">
                                         @error('p_r_name') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Respondent Advocate</label>
+                                        <label for="example-text-input" class="form-control-label required">Respondent Advocate</label>
                                         <input class="form-control" type="text" name="p_r_advocate" value="{{ old('p_r_advocate') }}">
                                         @error('p_r_advocate') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Title</label>
+                                        <label for="example-text-input" class="form-control-label required">Title</label>
                                         <input class="form-control" type="text" name="title" value="{{ old('title') }}">
                                         @error('title') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Case Category</label>
+                                        <label for="exampleFormControlSelect1" class="form-control-label required">Case Category</label>
                                         <select class="form-control" id="exampleFormControlSelect1" name="case_category_id">
                                             <option value="">Select Category</option>
                                             @foreach($case_category as $cat)
@@ -66,28 +66,28 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Case No</label>
+                                        <label for="example-text-input" class="form-control-label required">Case No</label>
                                         <input class="form-control" type="text" name="case_no" value="{{ old('case_no') }}">
                                         @error('case_no') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Case File No</label>
+                                        <label for="example-text-input" class="form-control-label required">Case File No</label>
                                         <input class="form-control" type="text" name="case_file_no" value="{{ old('case_file_no') }}">
                                         @error('case_file_no') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Case Acts</label>
+                                        <label for="example-text-input" class="form-control-label required">Case Acts</label>
                                         <input class="form-control" type="text" name="acts" value="{{ old('acts') }}">
                                         @error('acts') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Court Category</label>
+                                        <label for="exampleFormControlSelect1" class="form-control-label required">Court Category</label>
                                         <select class="form-control" id="court_category_id" name="court_category_id">
                                             <option value="">Select Category</option>
                                             @foreach($court_category as $cat)
@@ -99,7 +99,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Court</label>
+                                        <label for="exampleFormControlSelect1" class="form-control-label required">Court</label>
                                         <select class="form-control" id="court_id" name="court_id">
                                             <option value="">Select Court</option>
                                         </select>
@@ -115,7 +115,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Case Stage</label>
+                                        <label for="exampleFormControlSelect1" class="form-control-label required">Case Stage</label>
                                         <select class="form-control" id="exampleFormControlSelect1" name="stage_id">
                                             <option value="">Select Stage</option>
                                             @foreach($case_stage as $cat)
@@ -127,14 +127,14 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Case Charge</label>
+                                        <label for="example-text-input" class="form-control-label required">Case Charge</label>
                                         <input class="form-control" type="number" name="case_charge" value="{{ old('case_charge') }}">
                                         @error('case_charge') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">                                    
                                     <div class="form-group">
-                                        <label for="exampleFormControlSelect1">Assign Staff</label>
+                                        <label for="exampleFormControlSelect1" class="form-control-label required">Assign Staff</label>
                                         <select class="form-control" id="exampleFormControlSelect1" name="staff_id">
                                             <option value="">Select Stage</option>
                                             @foreach($user as $cat)
@@ -146,7 +146,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Receiving Date</label>
+                                        <label for="example-text-input" class="form-control-label required">Receiving Date</label>
                                         <input class="form-control" type="date" name="receiving_date" value="{{ old('receiving_date') }}">
                                         @error('receiving_date') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>

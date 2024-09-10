@@ -33,7 +33,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="example-text-input" class="form-control-label">Name</label>
+                                        <label for="example-text-input" class="form-control-label required">Name</label>
                                         <input class="form-control" type="text" name="name" value="{{ $case_category->name ?? '' }}">
                                         @error('name') <p class="text-danger text-xs pt-1"> {{$message}} </p>@enderror
                                     </div>
