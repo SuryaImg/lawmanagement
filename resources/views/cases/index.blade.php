@@ -21,6 +21,8 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Title</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Respondent Name</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Case No</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                                 </tr>
@@ -34,6 +36,12 @@
                                                 <h6 class="mb-0 text-sm">{{$data->title}}</h6>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <p class="text-sm font-weight-bold mb-0"> {{ $data->p_r_name }}</p>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <p class="text-sm font-weight-bold mb-0"> {{ $data->case_no }}</p>
                                     </td>
                                     <td class="align-middle text-center text-sm">
                                         <p class="text-sm font-weight-bold mb-0"> {{ $data->description }}</p>

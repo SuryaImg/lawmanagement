@@ -21,8 +21,8 @@
                             <thead>
                                 <tr>
                                     <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Name</th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Location</th>
+                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
                                     <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                                 </tr>
                             </thead>
@@ -36,15 +36,15 @@
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <p class="text-sm font-weight-bold mb-0"> {{ $data->description }}</p>
-                                    </td>
                                     <td>
-                                        <div class="d-flex px-3 py-1">
+                                        <div class="text-center px-3 py-1">
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">{{$data->location}}</h6>
                                             </div>
                                         </div>
+                                    </td>
+                                    <td class="align-middle text-center text-sm">
+                                        <p class="text-sm font-weight-bold mb-0"> {{ $data->description }}</p>
                                     </td>
                                     <td class="text-center">
                                         <!-- <a href="{{ route('courts.show',$data->id) }}" class="mx-1" data-bs-toggle="tooltip" data-bs-original-title="Show events">
