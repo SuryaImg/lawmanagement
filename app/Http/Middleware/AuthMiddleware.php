@@ -17,8 +17,7 @@ class AuthMiddleware
     public function handle(Request $request, Closure $next): Response
     {
         $role = Auth::user()->roles->pluck('name')[0] ?? null;
-        if ($role != null) {
-            # code...
+        if ($role == 'Admin') {
             return $next($request);
         }
         Auth::logout();
