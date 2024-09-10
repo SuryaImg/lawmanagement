@@ -5,6 +5,7 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourtCategoryController;
 use App\Http\Controllers\CourtController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CaseCategoryController;
 use App\Http\Controllers\CaseStageController;
 use App\Http\Controllers\CaseController;
@@ -14,9 +15,7 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified','verify_admin','revalidate'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified','verify_admin','revalidate'])->name('dashboard');
 
 Route::middleware(['auth','verify_admin','revalidate'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile');
