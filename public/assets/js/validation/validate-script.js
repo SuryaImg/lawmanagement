@@ -73,7 +73,7 @@ jQuery(function() {
             },
             phone: {
               required: true,
-              rangelength: [10, 12],
+              rangelength: [10, 10],
               number: true
             },
             password: {
@@ -101,7 +101,10 @@ jQuery(function() {
             email: {
                 required: "Email is required",
                 email: "Enter valid email",
-            },            
+            },
+            phone: {
+                rangelength: "Please enter a valid 10 digit number.",
+            },
             password: {
                 required: "Password is required",
             },            
@@ -129,7 +132,7 @@ jQuery(function() {
             },
             phone: {
               required: true,
-              rangelength: [10, 12],
+              rangelength: [10, 10],
               number: true
             },
             "roles[]": {
@@ -150,6 +153,9 @@ jQuery(function() {
             email: {
                 required: "Email is required",
                 email: "Enter valid email",
+            },
+            phone: {
+                rangelength: "Please enter a valid 10 digit number.",
             },
             "roles[]": {
                 required: "Role is required",
